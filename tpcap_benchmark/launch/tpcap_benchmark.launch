@@ -1,0 +1,16 @@
+<launch>
+
+    <arg name="case_id" default="10" />
+    <arg name="case_padding" default="4.0" />
+    <arg name="case_resolution" default="0.25" />
+    <arg name="case_stage" default="initial" />
+    <node pkg="tpcap_benchmark" name="tpcap_benchmark_node" type="tpcap_benchmark_node" output="screen" >
+        <param name="case_id" type="int" value="$(arg case_id)" />
+        <param name="case_padding" type="double" value="$(arg case_padding)" />
+        <param name="case_resolution" type="double" value="$(arg case_resolution)" />
+        <param name="case_stage" type="string" value="$(arg case_stage)" />
+        <param name="cases_path" type="string" value="$(find tpcap_benchmark)/cases/" />
+    </node>
+    <node name = "world2map" pkg="tf" type = "static_transform_publisher" args="0 0 0 0 0 0 /world /map 10" />
+
+</launch>
